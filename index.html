@@ -199,6 +199,7 @@ async function loadContract(address, name, tabEl) {
     const pending = calls.filter(t => t.status === 'pending');
 
     const total = calls.length;
+    console.log("sample tx:", JSON.stringify(finalized[0]));
     const trueConsensus = finalized.filter(t =>
       !t.leader_timeout &&
       (t.validator_appeal_number === 0 || t.validator_appeal_number === null || t.validator_appeal_number === undefined) &&
