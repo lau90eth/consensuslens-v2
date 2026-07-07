@@ -201,11 +201,11 @@ async function loadContract(address, name, tabEl) {
     const total = calls.length;
     const trueConsensus = finalized.filter(t =>
       !t.leader_timeout &&
-      (t.validator_appeal_number === 0 || t.validator_appeal_number === null) &&
+      (t.validator_appeal_number === 0 || t.validator_appeal_number === null || t.validator_appeal_number === undefined) &&
       t.validator_majority_alignment !== false
     );
     const appealChain = finalized.filter(t =>
-      t.leader_timeout || (t.validator_appeal_number > 0)
+      t.leader_timeout || (t.validator_appeal_number !== null && t.validator_appeal_number !== undefined && t.validator_appeal_number > 0)
     );
     const consensusRate = total > 0 ? Math.round((trueConsensus.length / total) * 100) : 0;
     const finalizedRate = total > 0 ? Math.round((finalized.length / total) * 100) : 0;
